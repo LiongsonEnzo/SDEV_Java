@@ -1,0 +1,123 @@
+class MyDate {
+    private int year, month, day;
+
+    public MyDate(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
+    @Override
+    public String toString() {
+        return month + "/" + day + "/" + year;
+    }
+}
+
+// Person class
+class Person {
+    private String name;
+    private String address;
+    private String phoneNumber;
+    private String email;
+
+    public Person(String name, String address, String phoneNumber, String email) {
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Class: Person, Name: " + name;
+    }
+}
+
+// Student class
+class Student extends Person {
+    public static final String FRESHMAN = "Freshman";
+    public static final String SOPHOMORE = "Sophomore";
+    public static final String JUNIOR = "Junior";
+    public static final String SENIOR = "Senior";
+
+    private String classStatus;
+
+    public Student(String name, String address, String phoneNumber, String email, String classStatus) {
+        super(name, address, phoneNumber, email);
+        this.classStatus = classStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Class: Student, Name: " + super.toString().split(", ")[1];
+    }
+}
+
+// Employee class
+class Employee extends Person {
+    private String office;
+    private double salary;
+    private MyDate dateHired;
+
+    public Employee(String name, String address, String phoneNumber, String email, String office, double salary, MyDate dateHired) {
+        super(name, address, phoneNumber, email);
+        this.office = office;
+        this.salary = salary;
+        this.dateHired = dateHired;
+    }
+
+    @Override
+    public String toString() {
+        return "Class: Employee, Name: " + super.toString().split(", ")[1];
+    }
+}
+
+// Faculty class
+class Faculty extends Employee {
+    private String officeHours;
+    private String rank;
+
+    public Faculty(String name, String address, String phoneNumber, String email, String office, double salary, MyDate dateHired, String officeHours, String rank) {
+        super(name, address, phoneNumber, email, office, salary, dateHired);
+        this.officeHours = officeHours;
+        this.rank = rank;
+    }
+
+    @Override
+    public String toString() {
+        return "Class: Faculty, Name: " + super.toString().split(", ")[1];
+    }
+}
+
+// Staff class
+class Staff extends Employee {
+    private String title;
+
+    public Staff(String name, String address, String phoneNumber, String email, String office, double salary, MyDate dateHired, String title) {
+        super(name, address, phoneNumber, email, office, salary, dateHired);
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Class: Staff, Name: " + super.toString().split(", ")[1];
+    }
+}
+
+//Main
+public class Test {
+    public static void main(String[] args) {
+        Person person = new Person("John Doe", "123 Main St", "555-1234", "john@example.com");
+        Student student = new Student("Jane Smith", "456 Oak St", "555-5678", "jane@example.com", Student.SENIOR);
+        MyDate dateHired = new MyDate(2020, 5, 10);
+        Employee employee = new Employee("Mark Jones", "789 Pine St", "555-8765", "mark@example.com", "Room 101", 60000, dateHired);
+        Faculty faculty = new Faculty("Dr. Emily White", "321 Cedar St", "555-9876", "emily@example.com", "Room 202", 75000, dateHired, "9am-5pm", "Professor");
+        Staff staff = new Staff("Karen Black", "654 Maple St", "555-5432", "karen@example.com", "Room 303", 45000, dateHired, "Secretary");
+
+        System.out.println(person);
+        System.out.println(student);
+        System.out.println(employee);
+        System.out.println(faculty);
+        System.out.println(staff);
+    }
+}
